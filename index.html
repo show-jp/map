@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陣取りゲーム進捗マップ</title>
+<style>
+  /* ==========================================================
+     ★ 毎日の更新は、この「--color-〇〇」のクラス名を書き換えるだけ！
+     
+     【勢力の指定ルール】
+     o = オレンジ（サン） | p = ピンク（風）
+     b = 青緑（水）       | s = サーモン（湾）
+     w = 白（空地）       | d = 暗い緑（G2〜G4など）
+     ========================================================== */
+  .A0 { color: var(--color-o); } .A1 { color: var(--color-o); } .A2 { color: var(--color-o); } .A3 { color: var(--color-o); } .A4 { color: var(--color-o); } .A5 { color: var(--color-s); } .A6 { color: var(--color-s); } .A7 { color: var(--color-s); } .A8 { color: var(--color-s); } .A9 { color: var(--color-s); }
+  .B0 { color: var(--color-o); } .B1 { color: var(--color-o); } .B2 { color: var(--color-o); } .B3 { color: var(--color-o); } .B4 { color: var(--color-o); } .B5 { color: var(--color-s); } .B6 { color: var(--color-s); } .B7 { color: var(--color-s); } .B8 { color: var(--color-s); } .B9 { color: var(--color-s); }
+  .C0 { color: var(--color-o); } .C1 { color: var(--color-o); } .C2 { color: var(--color-o); } .C3 { color: var(--color-o); } .C4 { color: var(--color-o); } .C5 { color: var(--color-s); } .C6 { color: var(--color-s); } .C7 { color: var(--color-s); } .C8 { color: var(--color-s); } .C9 { color: var(--color-s); }
+  .D0 { color: var(--color-o); } .D1 { color: var(--color-o); } .D2 { color: var(--color-o); } .D3 { color: var(--color-o); } .D4 { color: var(--color-w); } .D5 { color: var(--color-s); } .D6 { color: var(--color-s); } .D7 { color: var(--color-s); } .D8 { color: var(--color-s); } .D9 { color: var(--color-s); }
+  .E0 { color: var(--color-o); } .E1 { color: var(--color-o); } .E2 { color: var(--color-o); } .E3 { color: var(--color-o); } .E6 { color: var(--color-w); } .E7 { color: var(--color-s); } .E8 { color: var(--color-s); } .E9 { color: var(--color-s); }
+  .F0 { color: var(--color-o); } .F1 { color: var(--color-o); } .F2 { color: var(--color-d); } .F3 { color: var(--color-w); } .F6 { color: var(--color-s); } .F7 { color: var(--color-s); } .F8 { color: var(--color-s); } .F9 { color: var(--color-s); }
+  .G0 { color: var(--color-o); } .G1 { color: var(--color-p); } .G2 { color: var(--color-d); } .G3 { color: var(--color-d); } .G4 { color: var(--color-d); } .G5 { color: var(--color-w); } .G6 { color: var(--color-s); } .G7 { color: var(--color-s); } .G8 { color: var(--color-s); } .G9 { color: var(--color-d); }
+  .H0 { color: var(--color-p); } .H1 { color: var(--color-p); } .H2 { color: var(--color-p); } .H3 { color: var(--color-d); } .H4 { color: var(--color-d); } .H5 { color: var(--color-d); } .H6 { color: var(--color-d); } .H7 { color: var(--color-d); } .H8 { color: var(--color-d); } .H9 { color: var(--color-d); }
+  .I0 { color: var(--color-p); } .I1 { color: var(--color-p); } .I2 { color: var(--color-p); } .I3 { color: var(--color-d); } .I4 { color: var(--color-d); } .I5 { color: var(--color-d); } .I6 { color: var(--color-d); } .I7 { color: var(--color-d); } .I8 { color: var(--color-d); } .I9 { color: var(--color-d); }
+  .J0 { color: var(--color-p); } .J1 { color: var(--color-p); } .J2 { color: var(--color-p); } .J3 { color: var(--color-p); } .J4 { color: var(--color-d); } .J5 { color: var(--color-d); } .J6 { color: var(--color-d); } .J7 { color: var(--color-d); } .J8 { color: var(--color-d); } .J9 { color: var(--color-d); }
+
+  /* ==========================================================
+     色の定義（カラーコードを微調整したい場合はここを変更）
+     ========================================================== */
+  :root {
+    --color-o: #f3b111; /* サン・オレンジ */
+    --color-p: #e593d4; /* 風・ピンク */
+    --color-b: #009393; /* 水・青緑（濃いめ） */
+    --color-d: #009393; /* 水・青緑（画像内のG2〜H9など、今回は同色にしてあります） */
+    --color-s: #e09979; /* 湾・サーモン */
+    --color-w: #ffffff; /* 白 */
+  }
+
+  /* 全体レイアウト */
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 650px; margin: 20px auto; padding: 0 15px; color: #333; }
+  h1 { font-size: 24px; text-align: center; margin-bottom: 20px; }
+  
+  /* 表のスタイル */
+  .map-container { overflow-x: auto; /* スマホではみ出た時に横スクロール可能にする */ margin-bottom: 30px; }
+  table { border-collapse: collapse; text-align: center; font-size: 13px; font-weight: bold; margin: 0 auto; background: #fff; }
+  th, td { border: 1px solid #333; width: 45px; height: 45px; padding: 0; box-sizing: border-box; }
+  th { background-color: #ffffff; font-size: 15px; }
+  
+  /* 該当マスの背景色をCSS変数から流し込むマジック */
+  td { background-color: currentColor; color: #fff !important; }
+  th, .label-row th { color: #333 !important; background: #fff; }
+  
+  /* 中央のパレータウン専用（4マスぶち抜き） */
+  .center-town { background: #fff; color: #333 !important; font-size: 11px; }
+
+  /* 本日のTips（メモ欄）のスタイル */
+  .tips-box { background: #f9f9f9; border-left: 4px solid #333; padding: 15px; margin-top: 20px; border-radius: 4px; }
+  .tips-box h2 { font-size: 18px; margin-top: 0; margin-bottom: 10px; }
+  .tips-box ul { margin: 0; padding-left: 20px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h1>陣取りゲーム 進捗マップ</h1>
+
+<div class="map-container">
+  <table>
+    <!-- 数字のヘッダー行 -->
+    <tr class="label-row">
+      <th></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th>
+    </tr>
+    <!-- A行 -->
+    <tr><th>A</th><td class="A0">サン</td><td class="A1">A1</td><td class="A2">A2</td><td class="A3">A3</td><td class="A4">A4</td><td class="A5">A5</td><td class="A6">A6</td><td class="A7">A7</td><td class="A8">A8</td><td class="A9">湾</td></tr>
+    <!-- B行 -->
+    <tr><th>B</th><td class="B0">B0</td><td class="B1">B1</td><td class="B2">B2</td><td class="B3">B3</td><td class="B4">B4</td><td class="B5">B5</td><td class="B6">B6</td><td class="B7">B7</td><td class="B8">B8</td><td class="B9">B9</td></tr>
+    <!-- C行 -->
+    <tr><th>C</th><td class="C0">C0</td><td class="C1">C1</td><td class="C2">C2</td><td class="C3">C3</td><td class="C4">C4</td><td class="C5">C5</td><td class="C6">C6</td><td class="C7">C7</td><td class="C8">C8</td><td class="C9">C9</td></tr>
+    <!-- D行 -->
+    <tr><th>D</th><td class="D0">D0</td><td class="D1">D1</td><td class="D2">D2</td><td class="D3">D3</td><td class="D4">D4</td><td class="D5">D5</td><td class="D6">D6</td><td class="D7">D7</td><td class="D8">D8</td><td class="D9">D9</td></tr>
+    <!-- E行 -->
+    <tr><th>E</th><td class="E0">E0</td><td class="E1">E1</td><td class="E2">E2</td><td class="E3">E3</td><td colspan="2" rowspan="2" class="center-town">パレータウン</td><td class="E6">E6</td><td class="E7">E7</td><td class="E8">E8</td><td class="E9">E9</td></tr>
+    <!-- F行 -->
+    <tr><th>F</th><td class="F0">F0</td><td class="F1">F1</td><td class="F2">F2</td><td class="F3">F3</td><td class="F6">F6</td><td class="F7">F7</td><td class="F8">F8</td><td class="F9">F9</td></tr>
+    <!-- G行 -->
+    <tr><th>G</th><td class="G0">G0</td><td class="G1">G1</td><td class="G2">G2</td><td class="G3">G3</td><td class="G4">G4</td><td class="G5">G5</td><td class="G6">G6</td><td class="G7">G7</td><td class="G8">G8</td><td class="G9">G9</td></tr>
+    <!-- H行 -->
+    <tr><th>H</th><td class="H0">H0</td><td class="H1">H1</td><td class="H2">H2</td><td class="H3">H3</td><td class="H4">H4</td><td class="H5">H5</td><td class="H6">H6</td><td class="H7">H7</td><td class="H8">H8</td><td class="H9">H9</td></tr>
+    <!-- I行 -->
+    <tr><th>I</th><td class="I0">I0</td><td class="I1">I1</td><td class="I2">I2</td><td class="I3">I3</td><td class="I4">I4</td><td class="I5">I5</td><td class="I6">I6</td><td class="I7">I7</td><td class="I8">I8</td><td class="I9">I9</td></tr>
+    <!-- J行 -->
+    <tr><th>J</th><td class="J0">風</td><td class="J1">J1</td><td class="J2">J2</td><td class="J3">J3</td><td class="J4">J4</td><td class="J5">J5</td><td class="J6">J6</td><td class="J7">J7</td><td class="J8">J8</td><td class="J9">水</td></tr>
+  </table>
+</div>
+
+<!-- ==========================================================
+     ★ 本日のTips・メモはここに自由に書き残せます！
+     ========================================================== */ -->
+<div class="tips-box">
+  <h2>本日の戦況・Tips</h2>
+  <ul>
+    <li><strong>【サン（橙）】</strong> 北西エリアを強固に防衛中。D4の境界線で膠着状態。</li>
+    <li><strong>【風（ピンク）】</strong> 南西からジワジワと勢力を拡大。G1を新たに確保。</li>
+    <li><strong>【水（青）】</strong> 南東の拠点を維持しつつ、中央のパレータウン侵攻を狙う動きあり。</li>
+    <li><strong>【湾（サーモン）】</strong> 東側一帯を広くカバー。E6付近の空地を巡る攻防が激化予想。</li>
+  </ul>
+</div>
+
+</body>
+</html>
