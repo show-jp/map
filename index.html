@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>陣取りゲーム進捗マップ</title>
+<title>WildWaterWorld's Map</title>
 <style>
   /* ==========================================================
      ★ 毎日の更新は、この「--color-〇〇」のクラス名を書き換えるだけ！
@@ -13,16 +13,35 @@
      b = 青緑（水）       | s = サーモン（湾）
      w = 白（空地）       | d = 暗い緑（G2〜G4など）
      ========================================================== */
-  .A0 { --cell-color: var(--color-o); } .A1 { --cell-color: var(--color-o); } .A2 { --cell-color: var(--color-o); } .A3 { --cell-color: var(--color-o); } .A4 { --cell-color: var(--color-o); } .A5 { --cell-color: var(--color-s); } .A6 { --cell-color: var(--color-s); } .A7 { --cell-color: var(--color-s); } .A8 { --cell-color: var(--color-s); } .A9 { --cell-color: var(--color-s); }
-  .B0 { --cell-color: var(--color-o); } .B1 { --cell-color: var(--color-o); } .B2 { --cell-color: var(--color-o); } .B3 { --cell-color: var(--color-o); } .B4 { --cell-color: var(--color-o); } .B5 { --cell-color: var(--color-s); } .B6 { --cell-color: var(--color-s); } .B7 { --cell-color: var(--color-s); } .B8 { --cell-color: var(--color-s); } .B9 { --cell-color: var(--color-s); }
-  .C0 { --cell-color: var(--color-o); } .C1 { --cell-color: var(--color-o); } .C2 { --cell-color: var(--color-o); } .C3 { --cell-color: var(--color-o); } .C4 { --cell-color: var(--color-o); } .C5 { --cell-color: var(--color-s); } .C6 { --cell-color: var(--color-s); } .C7 { --cell-color: var(--color-s); } .C8 { --cell-color: var(--color-s); } .C9 { --cell-color: var(--color-s); }
-  .D0 { --cell-color: var(--color-o); } .D1 { --cell-color: var(--color-o); } .D2 { --cell-color: var(--color-o); } .D3 { --cell-color: var(--color-o); } .D4 { --cell-color: var(--color-w); } .D5 { --cell-color: var(--color-s); } .D6 { --cell-color: var(--color-s); } .D7 { --cell-color: var(--color-s); } .D8 { --cell-color: var(--color-s); } .D9 { --cell-color: var(--color-s); }
-  .E0 { --cell-color: var(--color-o); } .E1 { --cell-color: var(--color-o); } .E2 { --cell-color: var(--color-o); } .E3 { --cell-color: var(--color-o); } .E6 { --cell-color: var(--color-w); } .E7 { --cell-color: var(--color-s); } .E8 { --cell-color: var(--color-s); } .E9 { --cell-color: var(--color-s); }
-  .F0 { --cell-color: var(--color-o); } .F1 { --cell-color: var(--color-o); } .F2 { --cell-color: var(--color-d); } .F3 { --cell-color: var(--color-w); } .F6 { --cell-color: var(--color-s); } .F7 { --cell-color: var(--color-s); } .F8 { --cell-color: var(--color-s); } .F9 { --cell-color: var(--color-s); }
-  .G0 { --cell-color: var(--color-o); } .G1 { --cell-color: var(--color-p); } .G2 { --cell-color: var(--color-d); } .G3 { --cell-color: var(--color-d); } .G4 { --cell-color: var(--color-d); } .G5 { --cell-color: var(--color-w); } .G6 { --cell-color: var(--color-s); } .G7 { --cell-color: var(--color-s); } .G8 { --cell-color: var(--color-s); } .G9 { --cell-color: var(--color-d); }
-  .H0 { --cell-color: var(--color-p); } .H1 { --cell-color: var(--color-p); } .H2 { --cell-color: var(--color-p); } .H3 { --cell-color: var(--color-d); } .H4 { --cell-color: var(--color-d); } .H5 { --cell-color: var(--color-d); } .H6 { --cell-color: var(--color-d); } .H7 { --cell-color: var(--color-d); } .H8 { --cell-color: var(--color-d); } .H9 { --cell-color: var(--color-d); }
-  .I0 { --cell-color: var(--color-p); } .I1 { --cell-color: var(--color-p); } .I2 { --cell-color: var(--color-p); } .I3 { --cell-color: var(--color-d); } .I4 { --cell-color: var(--color-d); } .I5 { --cell-color: var(--color-d); } .I6 { --cell-color: var(--color-d); } .I7 { --cell-color: var(--color-d); } .I8 { --cell-color: var(--color-d); } .I9 { --cell-color: var(--color-d); }
-  .J0 { --cell-color: var(--color-p); } .J1 { --cell-color: var(--color-p); } .J2 { --cell-color: var(--color-p); } .J3 { --cell-color: var(--color-p); } .J4 { --cell-color: var(--color-d); } .J5 { --cell-color: var(--color-d); } .J6 { --cell-color: var(--color-d); } .J7 { --cell-color: var(--color-d); } .J8 { --cell-color: var(--color-d); } .J9 { --cell-color: var(--color-d); }
+  .A0 { --cell-color: var(--color-o); } .A1 { --cell-color: var(--color-o); } .A2 { --cell-color: var(--color-o); } .A3 { --cell-color: var(--color-o); } .A4 { --cell-color: var(--color-o); }
+  .A5 { --cell-color: var(--color-s); } .A6 { --cell-color: var(--color-s); } .A7 { --cell-color: var(--color-s); } .A8 { --cell-color: var(--color-s); } .A9 { --cell-color: var(--color-s); }
+  
+  .B0 { --cell-color: var(--color-o); } .B1 { --cell-color: var(--color-o); } .B2 { --cell-color: var(--color-o); } .B3 { --cell-color: var(--color-o); } .B4 { --cell-color: var(--color-o); }
+  .B5 { --cell-color: var(--color-s); } .B6 { --cell-color: var(--color-s); } .B7 { --cell-color: var(--color-s); } .B8 { --cell-color: var(--color-s); } .B9 { --cell-color: var(--color-s); }
+  
+  .C0 { --cell-color: var(--color-o); } .C1 { --cell-color: var(--color-o); } .C2 { --cell-color: var(--color-o); } .C3 { --cell-color: var(--color-o); } .C4 { --cell-color: var(--color-o); }
+  .C5 { --cell-color: var(--color-s); } .C6 { --cell-color: var(--color-s); } .C7 { --cell-color: var(--color-s); } .C8 { --cell-color: var(--color-s); } .C9 { --cell-color: var(--color-s); }
+  
+  .D0 { --cell-color: var(--color-o); } .D1 { --cell-color: var(--color-o); } .D2 { --cell-color: var(--color-o); } .D3 { --cell-color: var(--color-o); } .D4 { --cell-color: var(--color-w); }
+  .D5 { --cell-color: var(--color-s); } .D6 { --cell-color: var(--color-s); } .D7 { --cell-color: var(--color-s); } .D8 { --cell-color: var(--color-s); } .D9 { --cell-color: var(--color-s); }
+  
+  .E0 { --cell-color: var(--color-o); } .E1 { --cell-color: var(--color-o); } .E2 { --cell-color: var(--color-o); } .E3 { --cell-color: var(--color-o); }
+  .E6 { --cell-color: var(--color-w); } .E7 { --cell-color: var(--color-s); } .E8 { --cell-color: var(--color-s); } .E9 { --cell-color: var(--color-s); }
+  
+  .F0 { --cell-color: var(--color-o); } .F1 { --cell-color: var(--color-o); } .F2 { --cell-color: var(--color-d); } .F3 { --cell-color: var(--color-w); }
+  .F6 { --cell-color: var(--color-s); } .F7 { --cell-color: var(--color-s); } .F8 { --cell-color: var(--color-s); } .F9 { --cell-color: var(--color-s); }
+  
+  .G0 { --cell-color: var(--color-o); } .G1 { --cell-color: var(--color-p); } .G2 { --cell-color: var(--color-d); } .G3 { --cell-color: var(--color-d); } .G4 { --cell-color: var(--color-d); }
+  .G5 { --cell-color: var(--color-w); } .G6 { --cell-color: var(--color-s); } .G7 { --cell-color: var(--color-s); } .G8 { --cell-color: var(--color-s); } .G9 { --cell-color: var(--color-d); }
+  
+  .H0 { --cell-color: var(--color-p); } .H1 { --cell-color: var(--color-p); } .H2 { --cell-color: var(--color-p); } .H3 { --cell-color: var(--color-d); } .H4 { --cell-color: var(--color-d); }
+  .H5 { --cell-color: var(--color-d); } .H6 { --cell-color: var(--color-d); } .H7 { --cell-color: var(--color-d); } .H8 { --cell-color: var(--color-d); } .H9 { --cell-color: var(--color-d); }
+  
+  .I0 { --cell-color: var(--color-p); } .I1 { --cell-color: var(--color-p); } .I2 { --cell-color: var(--color-p); } .I3 { --cell-color: var(--color-d); } .I4 { --cell-color: var(--color-d); }
+  .I5 { --cell-color: var(--color-d); } .I6 { --cell-color: var(--color-d); } .I7 { --cell-color: var(--color-d); } .I8 { --cell-color: var(--color-d); } .I9 { --cell-color: var(--color-d); }
+  
+  .J0 { --cell-color: var(--color-p); } .J1 { --cell-color: var(--color-p); } .J2 { --cell-color: var(--color-p); } .J3 { --cell-color: var(--color-p); } .J4 { --cell-color: var(--color-d); }
+  .J5 { --cell-color: var(--color-d); } .J6 { --cell-color: var(--color-d); } .J7 { --cell-color: var(--color-d); } .J8 { --cell-color: var(--color-d); } .J9 { --cell-color: var(--color-d); }
 
   /* ==========================================================
      色の定義（カラーコードを微調整したい場合はここを変更）
@@ -50,7 +69,7 @@
   td { background-color: var(--cell-color); color: #333 !important; }
   th, .label-row th { color: #333 !important; background: #fff; }
   
-  /* 中央のパレータウン専用（4マスぶち抜き） */
+  /* 中央のバレータウン専用（4マスぶち抜き） */
   .center-town { background: #fff; color: #333 !important; font-size: 11px; }
 
   /* 本日のTips（メモ欄）のスタイル */
@@ -61,7 +80,7 @@
 </head>
 <body>
 
-<h1>陣取りゲーム 進捗マップ</h1>
+<h1>WildWaterWorld's Map</h1>
 
 <div class="map-container">
   <table>
@@ -78,7 +97,7 @@
     <!-- D行 -->
     <tr><th>D</th><td class="D0">D0</td><td class="D1">D1</td><td class="D2">D2</td><td class="D3">D3</td><td class="D4">D4</td><td class="D5">D5</td><td class="D6">D6</td><td class="D7">D7</td><td class="D8">D8</td><td class="D9">D9</td></tr>
     <!-- E行 -->
-    <tr><th>E</th><td class="E0">E0</td><td class="E1">E1</td><td class="E2">E2</td><td class="E3">E3</td><td colspan="2" rowspan="2" class="center-town">パレータウン</td><td class="E6">E6</td><td class="E7">E7</td><td class="E8">E8</td><td class="E9">E9</td></tr>
+    <tr><th>E</th><td class="E0">E0</td><td class="E1">E1</td><td class="E2">E2</td><td class="E3">E3</td><td colspan="2" rowspan="2" class="center-town">バレータウン</td><td class="E6">E6</td><td class="E7">E7</td><td class="E8">E8</td><td class="E9">E9</td></tr>
     <!-- F行 -->
     <tr><th>F</th><td class="F0">F0</td><td class="F1">F1</td><td class="F2">F2</td><td class="F3">F3</td><td class="F6">F6</td><td class="F7">F7</td><td class="F8">F8</td><td class="F9">F9</td></tr>
     <!-- G行 -->
@@ -96,12 +115,10 @@
      ★ 本日のTips・メモはここに自由に書き残せます！
      ========================================================== */ -->
 <div class="tips-box">
-  <h2>本日の戦況・Tips</h2>
+  <h2>Tips</h2>
   <ul>
-    <li><strong>【サン（橙）】</strong> 北西エリアを強固に防衛中。D4の境界線で膠着状態。</li>
-    <li><strong>【風（ピンク）】</strong> 南西からジワジワと勢力を拡大。G1を新たに確保。</li>
-    <li><strong>【水（青）】</strong> 南東の拠点を維持しつつ、中央のパレータウン侵攻を狙う動きあり。</li>
-    <li><strong>【湾（サーモン）】</strong> 東側一帯を広くカバー。E6付近の空地を巡る攻防が激化予想。</li>
+    <li><strong>【サン】</strong> C5死守しながらC4 → D4 ルート<br>NPC:3867</li>
+    <li><strong>【水】</strong> E7死守しながらE6 → バレータウン ルート<br>NPC:599</li>
   </ul>
 </div>
 
